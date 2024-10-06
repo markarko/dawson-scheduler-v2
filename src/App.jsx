@@ -1,9 +1,9 @@
 import '@mantine/core/styles.css';
 import { createTheme, MantineProvider } from '@mantine/core';
-import SearchPage from './components/Search/SearchPage';
 import classes from './App.module.css';
 import React from 'react';
 import { Navbar, NavbarItem } from './components/nav/Navbar';
+import SearchPage from './components/search/SearchPage';
 import SchedulesPage from './components/schedules/SchedulesPage';
 import SavedSchedulesPage from './components/saved/SavedSchedulesPage';
 import { ToastContainer, toast } from 'react-toastify';
