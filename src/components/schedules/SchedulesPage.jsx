@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import SelectedCourses from "../Search/SelectedCourse/SelectedCourses";
 import classes from './SchedulesPage.module.css';
 import Schedules from './schedule/Schedules';
 import React from 'react';
-import Dropdown from "../search/dropdown/Dropdown";
+import Dropdown from "../search/elements/Dropdown";
 import FiltersPanel from "./filters/FiltersPanel";
 
 const Zoom = {

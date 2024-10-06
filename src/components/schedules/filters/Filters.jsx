@@ -1,7 +1,7 @@
 import classes from './Filters.module.css';
 import React, { useEffect } from 'react';
-import { MultiSelect, SegmentedControl, Button } from '@mantine/core';
-import Dropdown from '../../search/dropdown/Dropdown';
+import { MultiSelect, Button } from '@mantine/core';
+import Dropdown from '../../search/elements/Dropdown';
 
 export default function Filters(props) {
   const [generalFilters, setGeneralFilters] = React.useState({});

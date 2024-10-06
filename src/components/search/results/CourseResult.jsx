@@ -1,7 +1,7 @@
 import { Paper, Text, Button } from '@mantine/core';
 import classes from './CourseResult.module.css';
 import React from 'react';
-import Dropdown from '../dropdown/Dropdown';
+import Dropdown from '../elements/Dropdown';
 
 const allSections = 'All';
 

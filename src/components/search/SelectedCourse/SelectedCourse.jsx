@@ -1,6 +1,5 @@
 import classes from './SelectedCourses.module.css';
 import { useMantineTheme } from '@mantine/core';
-import React from 'react';
 import { ActionIcon, rem } from '@mantine/core';
 import { IconSquareX } from '@tabler/icons-react';
 

@@ -4,7 +4,7 @@ import SearchBar from './input/SearchBar';
 import CourseResults from './results/CourseResults';
 import SelectedCourses from './SelectedCourse/SelectedCourses';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const colors = ['#7697a0', '#f0c27b', '#8a9a5b', '#e2d2c1', '#846c5b', '#bdb4a5', '#ff6f61'];
 
