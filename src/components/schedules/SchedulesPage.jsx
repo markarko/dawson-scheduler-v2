@@ -1,4 +1,4 @@
-import SelectedCourses from "../Search/SelectedCourse/SelectedCourses";
+import SelectedCourses from "../search/SelectedCourse/SelectedCourses";
 import classes from './SchedulesPage.module.css';
 import Schedules from './schedule/Schedules';
 import React from 'react';
