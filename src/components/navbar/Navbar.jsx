@@ -54,12 +54,12 @@ export default function Navbar(props) {
         {links}
       </div>
       <div className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a href="/" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconRegistered className={classes.linkIcon} stroke={1.5} />
           <span>Register</span>
         </a>
 
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a href="/" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconLogin className={classes.linkIcon} stroke={1.5} />
           <span>Login</span>
         </a>

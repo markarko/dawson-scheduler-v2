@@ -31,7 +31,7 @@ export default function SearchBar(props) {
 }
 
 function fetchResults(setResults, query) {
-  fetch("http://localhost:8000/scheduler/courses?course-number=" + query)
+  fetch("/scheduler/courses?course-number=" + query)
     .then(response => response.json())
     .then(json => {
         if (json.status === 200 || json.status === "OK"){
