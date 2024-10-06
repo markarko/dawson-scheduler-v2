@@ -1,13 +1,10 @@
-import React from 'react';
 import { Group, Code } from '@mantine/core';
 import {
-  IconSettings,
   IconRegistered,
   IconLogin,
   IconSearch,
   IconCalendarMonth,
-  IconBookmark,
-  IconPlug
+  IconBookmark
 } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
 
@@ -27,7 +24,7 @@ const data = [
   // { link: '', label: NavbarItem.Settings, icon: IconSettings },
 ];
 
-export default function Navbar(props) {
+export function Navbar(props) {
   const links = data.map((item) => (
     <a
       className={classes.link}
