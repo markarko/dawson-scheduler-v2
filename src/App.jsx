@@ -92,7 +92,7 @@ export default function App() {
 }
 
 function fetchSchedules(setSchedules, body, ) {
-  fetch("http://localhost:8000/scheduler/schedules", {
+  fetch("/scheduler/schedules", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
