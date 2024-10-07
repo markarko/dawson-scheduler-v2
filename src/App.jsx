@@ -91,7 +91,7 @@ export default function App() {
 }
 
 function fetchSchedules(setSchedules, body, ) {
-  fetch("/scheduler/schedules", {
+  fetch("https://api.schedurator.live/scheduler/schedules", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -100,10 +100,22 @@ function fetchSchedules(setSchedules, body, ) {
   })
   .then(response => response.json())
   .then(json => {
-    setSchedules(json.data);
+    if (json.status === 200 || json.status === "OK"){
+      setSchedules(json.data);
+    } else if (json.status === 404) {
+      toast.error("Could not find any schedules for the selected courses and sections", {
+        autoClose: 2000
+      })
+    } else {
+      console.log(json);
+      toast.error("We are have technical issues. Please try again later", {
+        autoClose: 2000
+      })
+    }
   })
   .catch(error => {
     setSchedules([]);
+    console.log(error);
     toast.error("We are having technical issues. Please try again later", {
       autoClose: 2000
     })

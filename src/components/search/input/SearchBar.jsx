@@ -3,6 +3,7 @@ import './SearchBar.module.css';
 import { TextInput, ActionIcon, useMantineTheme, rem } from '@mantine/core';
 import { IconSearch, IconArrowRight } from '@tabler/icons-react';
 import classes from './SearchBar.module.css';
+import { toast } from 'react-toastify';
 
 
 export default function SearchBar(props) {
@@ -31,15 +32,27 @@ export default function SearchBar(props) {
 }
 
 function fetchResults(setResults, query) {
-  fetch("/scheduler/courses?course-number=" + query)
+  fetch("https://api.schedurator.live/scheduler/courses?course-number=" + query)
     .then(response => response.json())
     .then(json => {
         if (json.status === 200 || json.status === "OK"){
           setResults(json.data);
+        } else if (json.status === 404) {
+          toast.error("Could not find any courses for this query", {
+            autoClose: 2000
+          })
+        } else {
+          toast.error("We are have technical issues. Please try again later", {
+            autoClose: 2000
+          })
         }
-       
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      toast.error("We are have technical issues. Please try again later", {
+        autoClose: 2000
+      });
+      console.log(error);
+    });
 }
 
 function handleKeyPress(e, setResults, query) {

@@ -4,6 +4,7 @@ import Schedules from './schedule/Schedules';
 import React from 'react';
 import Dropdown from "../search/elements/Dropdown";
 import FiltersPanel from "./filters/FiltersPanel";
+import { toast } from "react-toastify";
 
 const Zoom = {
   Small: {
@@ -26,7 +27,9 @@ export default function SchedulesPage(props) {
   const onScheduleSave = (schedule) => {
     const scheduleExists = props.savedSchedules.some(savedSchedule => JSON.stringify(savedSchedule) === JSON.stringify(schedule));
     if (scheduleExists) {
-      // toast
+      toast.error("This schedule is already saved", {
+        autoClose: 2000
+      })
     } else {
       props.setSavedSchedules([...props.savedSchedules, schedule]);
     }
