@@ -32,16 +32,16 @@ export default function SearchBar(props) {
 }
 
 function fetchResults(setResults, query) {
-  fetch("https://schedurator-a4fzaxeshbe9gxg8.canadacentral-01.azurewebsites.net/scheduler/courses?course-number=" + query)
+  fetch("http://localhost:8000/scheduler/courses?course-number=" + query)
     .then(response => response.json())
     .then(json => {
-        if (json.status === 200 || json.status === "OK"){
+        if (json.status === "OK"){
           setResults(json.data);
-        } else if (json.status === 404) {
+        } else if (json.status === "NOT_FOUND") {
           toast.error("Could not find any courses for this query", {
             autoClose: 2000
           })
-        } else {
+        } else if (json.status !== "BAD_REQUEST") {
           toast.error("We are have technical issues. Please try again later", {
             autoClose: 2000
           })

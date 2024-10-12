@@ -91,7 +91,7 @@ export default function App() {
 }
 
 function fetchSchedules(setSchedules, body, ) {
-  fetch("https://schedurator-a4fzaxeshbe9gxg8.canadacentral-01.azurewebsites.net/scheduler/schedules", {
+  fetch("http://localhost:8000/scheduler/schedules", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -100,13 +100,13 @@ function fetchSchedules(setSchedules, body, ) {
   })
   .then(response => response.json())
   .then(json => {
-    if (json.status === 200 || json.status === "OK"){
+    if (json.status === "OK"){
       setSchedules(json.data);
-    } else if (json.status === 404) {
+    } else if (json.status === "NOT_FOUND") {
       toast.error("Could not find any schedules for the selected courses and sections", {
         autoClose: 2000
       })
-    } else {
+    } else if (json.status !== "BAD_REQUEST") {
       console.log(json);
       toast.error("We are have technical issues. Please try again later", {
         autoClose: 2000
