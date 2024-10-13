@@ -1,6 +1,16 @@
-.Burger {
-  color: "blue";
-  /* display: ; */
+.MobileNav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.MobileNav img {
+  height: 34px;
+  aspect-ratio: 1.29;
 }
 
 .navbar {

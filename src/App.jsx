@@ -36,6 +36,7 @@ export default function App() {
   const [selectedCourses, setSelectedCourses] = React.useState([]);
   const [schedules, setSchedules] = React.useState([]);
 
+
   React.useEffect(() => {
     const body = {};
     body.selectedCourses = {};
@@ -76,9 +77,7 @@ export default function App() {
                                 fetchSchedules(setSchedules, body)}
                               }
                             />,
-    [NavbarItem.Saved]: <SavedSchedulesPage selectedCourses={selectedCourses} savedSchedules={savedSchedules} />,
-    // [NavbarItem.Plugins]: <div>Plugins</div>,
-    // [NavbarItem.Settings]: <div>Settings</div>,
+    [NavbarItem.Saved]: <SavedSchedulesPage selectedCourses={selectedCourses} savedSchedules={savedSchedules} />
   };
 
   return <MantineProvider theme={theme} classNamesPrefix={classes.MantineProviderOverride}>
@@ -106,12 +105,16 @@ function fetchSchedules(setSchedules, body, ) {
       toast.error("Could not find any schedules for the selected courses and sections", {
         autoClose: 2000
       })
+      setSchedules([]);
     } else if (json.status !== "BAD_REQUEST") {
-      console.log(json);
       toast.error("We are have technical issues. Please try again later", {
         autoClose: 2000
       })
+      setSchedules([]);
+    } else {
+      setSchedules([]);
     }
+    
   })
   .catch(error => {
     setSchedules([]);

@@ -49,13 +49,17 @@
 }
 
 .ScheduleBack {
-    background-color: #4a76ac;
+    background-color: var(--mantine-color-blue-filled);
     color: white;
     transform: rotateY(180deg);
 }
 
 .FlipCard:hover .FlipCardInner {
     transform: rotateY(180deg);
+}
+
+.ActionButtons > * {
+    border: 2px solid white;
 }
 
 .ScheduleFront, .ScheduleBack {

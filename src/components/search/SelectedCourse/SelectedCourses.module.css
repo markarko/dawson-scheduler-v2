@@ -1,15 +1,28 @@
 .SelectedCourse {
-    width: fit-content;
+    min-width: fit-content;
     padding: 0 0.75rem;
 }
 
 .SelectedCourses {
+    width: 100%;
     display: flex;
     gap: 1rem;
     justify-content: center;
     position: sticky;
-    top: 102px;
+    top: 42px;
     background-color: white;
     z-index: 1;
     padding-bottom: 2rem;
+    min-height: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .SelectedCourses {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        justify-content: flex-start;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }

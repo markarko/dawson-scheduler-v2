@@ -7,8 +7,8 @@ import {
   IconBookmark
 } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
-import { useMediaQuery } from '@mantine/hooks';
 import React from 'react';
+import useIsMobile from '../../hooks/UseIsMobile';
 
 export const NavbarItem = {
   Search: 'Search',
@@ -32,7 +32,7 @@ const mobileData = [
 ];
 
 export function Navbar(props) {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useIsMobile();
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false);
   const theme = useMantineTheme();
 
@@ -82,49 +82,51 @@ export function Navbar(props) {
       )}
 
       {isMobile && (
-        <>
-          <Burger
-            color={"white"}
-            style={{ background: theme.colors.blue[9], position: "sticky", top: "32.5px", left: "32.5px"}}
-            opened={isMobileNavOpen}
-            onClick={() => setIsMobileNavOpen((o) => !o)}
-            size="md"
-            mr="xl"
-          />
-          <Drawer
-            opened={isMobileNavOpen}
-            onClose={() => setIsMobileNavOpen(false)}
-            padding="md"
-            size="100%"
-            title="Menu"
-            styles={{
-              drawer: {
-                heihgt: "100vh",
-                backgroundColor: theme.colors.blue[9],
-              },
-              header: {
-                backgroundColor: theme.colors.blue[9],
-                color: "white",
-                height: "10%"
-              },
-              close: {
-                backgroundColor: "white",
-                color: theme.colors.blue[9],
-              },
-              body: {
-                backgroundColor: theme.colors.blue[9],
-                height: "90%",
-              }
-            }}
-          >
-            <ScrollArea style={{ height: '100%' }}>
-              <div style={{ padding: '20px' }}>
-                {links}
-                {mobileLinks}
-              </div>
-            </ScrollArea>
-          </Drawer>
-        </>
+        <nav className={classes.MobileNav}>
+          <a href="https://discord.com/users/439861053543940097"><img src={"/icons/discord-icon.png"} /></a>
+          <div>
+            <Burger
+              color={theme.colors.blue[9]}
+              style={{ background: "white", position: "sticky", top: "32.5px", left: "32.5px"}}
+              opened={isMobileNavOpen}
+              onClick={() => setIsMobileNavOpen((o) => !o)}
+              size="md"
+            />
+            <Drawer
+              opened={isMobileNavOpen}
+              onClose={() => setIsMobileNavOpen(false)}
+              padding="md"
+              size="100%"
+              title="Menu"
+              styles={{
+                drawer: {
+                  heihgt: "100vh",
+                  backgroundColor: theme.colors.blue[9],
+                },
+                header: {
+                  backgroundColor: theme.colors.blue[9],
+                  color: "white",
+                  height: "10%"
+                },
+                close: {
+                  backgroundColor: "white",
+                  color: theme.colors.blue[9],
+                },
+                body: {
+                  backgroundColor: theme.colors.blue[9],
+                  height: "90%",
+                }
+              }}
+            >
+              <ScrollArea style={{ height: '100%' }}>
+                <div style={{ padding: '20px' }}>
+                  {links}
+                  {mobileLinks}
+                </div>
+              </ScrollArea>
+            </Drawer>
+          </div>
+        </nav>
       )}
     </>
   );

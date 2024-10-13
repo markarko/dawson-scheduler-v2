@@ -18,7 +18,7 @@ function CourseResult(props) {
         <Text size="xl" fw={500} mt="md">
         {props.result.title} ({props.result.courseNumber})
         </Text>
-        <Text size="sm" mt="sm" c="dimmed">
+        <Text size="sm" mt="sm" c="dimmed" className={classes.CourseDescription}>
           {props.result.courseDescription}
         </Text>
       </div>

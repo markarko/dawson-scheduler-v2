@@ -41,10 +41,14 @@ function fetchResults(setResults, query) {
           toast.error("Could not find any courses for this query", {
             autoClose: 2000
           })
+          setResults([]);
         } else if (json.status !== "BAD_REQUEST") {
           toast.error("We are have technical issues. Please try again later", {
             autoClose: 2000
           })
+          setResults([]);
+        } else {
+          setResults([]);
         }
     })
     .catch(error => {
