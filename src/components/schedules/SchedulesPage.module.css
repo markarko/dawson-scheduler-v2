@@ -5,9 +5,9 @@
     padding: 0 30px 30px 30px;
 }
 
-.SelectedCourses {
-    padding-top: 30px; 
-}
+/* .SelectedCourses {
+    height: 0px;
+} */
 
 .Filters {
     background-color: white;

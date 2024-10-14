@@ -93,9 +93,9 @@ function MobileView(props) {
     <div className={`${classes.panelContent} ${isPanelOpen ? classes.open : ''}`}>
       <Filters selectedCourses={props.selectedCourses} applyFilters={props.applyFilters}/>
     </div>
-    {/* <div className={classes.SelectedCourses}>
+    <div className={classes.SelectedCourses}>
       <SelectedCourses selectedCourses={props.selectedCourses} setSelectedCourses={props.setSelectedCourses} />
-    </div> */}
+    </div>
     <Schedules schedules={props.schedules || []} selectedCourses={props.selectedCourses}
       zoom={props.zoom} onScheduleSave={props.onScheduleSave} savedSchedules={props.savedSchedules} onView={props.onView} />
   </div>  
