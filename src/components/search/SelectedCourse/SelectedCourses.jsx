@@ -1,6 +1,5 @@
 import classes from './SelectedCourses.module.css';
 import SelectedCourse from './SelectedCourse';
-import React from 'react';
 
 export const colors = ['#7697a0', '#f0c27b', '#8a9a5b', '#e2d2c1', '#846c5b', '#bdb4a5', '#ff6f61'];
 
