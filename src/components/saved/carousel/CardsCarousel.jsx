@@ -3,8 +3,11 @@ import classes from './CardsCarousel.module.css';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import SavedSchedule from '../schedule/SavedSchedule';
+import useIsMobile from '../../../hooks/UseIsMobile';
 
 export default function CardsCarousel(props) {
+  const isMobile = useIsMobile();
+
   if (!props.savedSchedules.length) {
     return <div></div>
   }
@@ -13,7 +16,7 @@ export default function CardsCarousel(props) {
 		<Carousel
 			className={classes.control}
 			slideGap="md"
-			draggable={false}
+			draggable={isMobile}
 			controlSize={64}
 			>
       { props.savedSchedules.map((savedSchedule, i) => {

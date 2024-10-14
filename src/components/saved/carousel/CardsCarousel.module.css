@@ -1,8 +1,8 @@
 .control {
-    /* &[data-inactive] {
+    &[data-inactive] {
         opacity: 0;
         cursor: default;
-    } */
+    }
 }
 
 .control > :last-child > :first-child {
@@ -11,4 +11,10 @@
 
 .control > :last-child > :last-child {
     margin-right: -100px;
+}
+
+@media only screen and (max-width: 768px) {
+    .control > :last-child > :first-child, .control > :last-child > :last-child {
+        display: none;
+    }
 }
