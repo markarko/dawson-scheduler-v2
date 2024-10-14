@@ -17,7 +17,6 @@ export default function SavedSchedule(props) {
     if (tbodyRef.current) {
       const height = tbodyRef.current.clientHeight;
       const width = tbodyRef.current.clientWidth;
-      console.log(height)
       setDimensions({ width, height });
     }
 

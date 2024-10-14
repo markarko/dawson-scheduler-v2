@@ -21,14 +21,14 @@ export const NavbarItem = {
 };
 
 const data = [
-  { link: '', label: NavbarItem.Search, icon: IconSearch },
-  { link: '', label: NavbarItem.Schedules, icon: IconCalendarMonth },
-  { link: '', label: NavbarItem.Saved, icon: IconBookmark },
+  { link: '', label: NavbarItem.Search, icon: IconSearch, disabled: false },
+  { link: '', label: NavbarItem.Schedules, icon: IconCalendarMonth, disabled: false },
+  { link: '', label: NavbarItem.Saved, icon: IconBookmark, disabled: false },
 ];
 
 const mobileData = [
-  { link: '', label: NavbarItem.Login, icon: IconLogin },
-  { link: '', label: NavbarItem.Register, icon: IconRegistered }
+  { link: '', label: NavbarItem.Login, icon: IconLogin, disabled: true },
+  { link: '', label: NavbarItem.Register, icon: IconRegistered, disabled: true }
 ];
 
 export function Navbar(props) {
@@ -44,7 +44,7 @@ export function Navbar(props) {
       onClick={(event) => {
         event.preventDefault(); 
         props.setActivePage(item.label);
-        if (isMobile) setIsMobileNavOpen(false); // Close the drawer on selection
+        if (isMobile) setIsMobileNavOpen(false);
       }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
@@ -83,7 +83,7 @@ export function Navbar(props) {
 
       {isMobile && (
         <nav className={classes.MobileNav}>
-          <a href="https://discord.com/users/439861053543940097"><img src={"/icons/discord-icon.png"} /></a>
+          <a href="https://discord.com/users/439861053543940097"><img src={"/icons/discord-icon.png"} alt="discord" /></a>
           <div>
             <Burger
               color={theme.colors.blue[9]}

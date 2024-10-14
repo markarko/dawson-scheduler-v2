@@ -52,10 +52,11 @@
         width: 95%;
         max-width: 300px;
         right: -350px;
-        max-height: 90%;
         justify-content: space-between;
         align-items: center;
         transition: right 0.3s ease;
+        max-height: 65%;
+        overflow-y: scroll;
     }
 
     .panelContent.open {

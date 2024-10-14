@@ -119,8 +119,8 @@ function fetchSchedules(setSchedules, body, ) {
   .catch(error => {
     setSchedules([]);
     console.log(error);
-    toast.error("We are having technical issues. Please try again later", {
+    toast.error("Our server is restarting. Please give us a minute", {
       autoClose: 2000
-    })
+    });
   });
 }

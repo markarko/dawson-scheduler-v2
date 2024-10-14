@@ -52,7 +52,7 @@ function fetchResults(setResults, query) {
         }
     })
     .catch(error => {
-      toast.error("We are have technical issues. Please try again later", {
+      toast.error("Our server is restarting. Please give us a minute", {
         autoClose: 2000
       });
       console.log(error);
