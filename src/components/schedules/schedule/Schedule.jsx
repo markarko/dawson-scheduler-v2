@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './Schedules.module.css';
 import {Button} from '@mantine/core';
 
+export const colors = ['#7697a0', '#f0c27b', '#8a9a5b', '#e2d2c1', '#846c5b', '#bdb4a5', '#ff6f61'];
+
 function Schedule(props) {
   const gridConfigs = {
     tdHeight: 5 * props.zoom.scale,
@@ -41,14 +43,13 @@ function Schedule(props) {
             </div> 
             <div className={classes.Grid} style={{width: daysInWeek * gridConfigs.tdWidth, height: numHoursInDay * slotsPerHour * gridConfigs.tdHeight}}>
               {
-                Object.keys(props.schedule).map(courseId => props.schedule[courseId].schedules.map(schedule => {
-                  const selectedCourse = props.selectedCourses[courseId];
+                Object.keys(props.schedule).map((courseId, courseIndex) => props.schedule[courseId].schedules.map((schedule, scheduleIndex) => {
                   return (
                     <div style={{
                       gridColumn: schedule.dayOfWeek,
                       gridRow: `${(schedule.startTime) / 30} / ${(schedule.endTime) / 30}`,
-                      backgroundColor: selectedCourse ? selectedCourse.color : undefined,
-                    }}></div>
+                      backgroundColor: colors[courseIndex],
+                    }} key={scheduleIndex}></div>
                   )
                 }))
               }
