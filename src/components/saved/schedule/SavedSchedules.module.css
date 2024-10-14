@@ -4,8 +4,8 @@
 
 .TBodyDiv {
     overflow-y: scroll;
-    overflow-x: hidden;
-    max-height: 700px;
+    overflow-x: visible;
+    max-height: 800px;
     position: relative;
 }
 
@@ -18,6 +18,8 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(96, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(68, 1fr);
     padding-left: 85px;
     padding-right: 1.5px;
     padding-bottom: 2.5px;
@@ -54,8 +56,6 @@
     height: 35px;
 }
 
-
-
 .SavedSchedule tbody td {
     height: 55px;
 }
@@ -64,4 +64,25 @@
     display: table;
     table-layout: fixed;
     width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .TBodyDiv .Grid {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(68, 1fr);
+        padding-left: 60.5px;
+        padding-right: 2px;
+    }
+
+    .TBodyDiv {
+        max-height: 500px;
+        scrollbar-width: none;
+    }
+    .SavedSchedule {
+        table-layout: fixed;
+    }
+
+    .SavedSchedule thead tr :first-child, .SavedSchedule tbody tr :first-child {
+        width: unset;
+    }
 }

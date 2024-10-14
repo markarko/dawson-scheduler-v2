@@ -2,7 +2,16 @@
     display: flex;
     flex-direction: column;
     flex: 6;
-    padding: 0 2rem;
+    padding: 15px;
     margin-top: 0;
-    padding-top: 0;
+    height: 100%;
+    gap: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .SearchPage {
+        max-height: 90%;
+        gap: 15px;
+        padding-top: 15px;
+    }
 }

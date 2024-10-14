@@ -2,3 +2,11 @@
     flex: 6;
     padding: 75px 150px;
 }
+
+@media only screen and (max-width: 768px) {
+    .SavedSchedulesPage {
+        padding: 15px;
+        align-items: center;
+        max-height: 500px;
+    }
+}

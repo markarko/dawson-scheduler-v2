@@ -33,8 +33,9 @@ const theme = createTheme({
 export default function App() {
   const [activePage, setActivePage] = React.useState(NavbarItem.Search);
   const [savedSchedules, setSavedSchedules] = React.useState([]);
-  const [selectedCourses, setSelectedCourses] = React.useState([]);
+  const [selectedCourses, setSelectedCourses] = React.useState({});
   const [schedules, setSchedules] = React.useState([]);
+
 
   React.useEffect(() => {
     const body = {};
@@ -76,9 +77,7 @@ export default function App() {
                                 fetchSchedules(setSchedules, body)}
                               }
                             />,
-    [NavbarItem.Saved]: <SavedSchedulesPage selectedCourses={selectedCourses} savedSchedules={savedSchedules} />,
-    // [NavbarItem.Plugins]: <div>Plugins</div>,
-    // [NavbarItem.Settings]: <div>Settings</div>,
+    [NavbarItem.Saved]: <SavedSchedulesPage selectedCourses={selectedCourses} savedSchedules={savedSchedules} />
   };
 
   return <MantineProvider theme={theme} classNamesPrefix={classes.MantineProviderOverride}>
@@ -100,24 +99,28 @@ function fetchSchedules(setSchedules, body, ) {
   })
   .then(response => response.json())
   .then(json => {
-    if (json.status === 200 || json.status === "OK"){
+    if (json.status === "OK"){
       setSchedules(json.data);
-    } else if (json.status === 404) {
+    } else if (json.status === "NOT_FOUND") {
       toast.error("Could not find any schedules for the selected courses and sections", {
         autoClose: 2000
       })
-    } else {
-      console.log(json);
+      setSchedules([]);
+    } else if (json.status !== "BAD_REQUEST") {
       toast.error("We are have technical issues. Please try again later", {
         autoClose: 2000
       })
+      setSchedules([]);
+    } else {
+      setSchedules([]);
     }
+    
   })
   .catch(error => {
     setSchedules([]);
     console.log(error);
-    toast.error("We are having technical issues. Please try again later", {
+    toast.error("Our server is restarting. Please give us a minute", {
       autoClose: 2000
-    })
+    });
   });
 }

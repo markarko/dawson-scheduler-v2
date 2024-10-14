@@ -37,9 +37,10 @@
 }
 
 .Schedules {
-    width: 92.5%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .ScheduleFront {
@@ -49,13 +50,17 @@
 }
 
 .ScheduleBack {
-    background-color: #4a76ac;
+    background-color: var(--mantine-color-blue-filled);
     color: white;
     transform: rotateY(180deg);
 }
 
 .FlipCard:hover .FlipCardInner {
     transform: rotateY(180deg);
+}
+
+.ActionButtons > * {
+    border: 2px solid white;
 }
 
 .ScheduleFront, .ScheduleBack {
@@ -73,4 +78,10 @@
     height: 100%;
     transition: transform 0.6s;
     transform-style: preserve-3d;
+}
+
+@media only screen and (max-width: 768px) {
+    .Schedules {
+        overflow-y: scroll;
+    }
 }

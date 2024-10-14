@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseResult from "./CourseResult";
 import classes from './CourseResult.module.css';
+import useIsMobile from '../../../hooks/UseIsMobile';
 
 const gap = 30;
 
@@ -8,8 +9,13 @@ export default function CourseResults(props) {
   const courseResultsRef = React.useRef(null);
   const [extraChildren, setExtraChildren] = React.useState(0);
   const [singleRow, setSingleRow] = React.useState(false);
+  const isMobile = useIsMobile();
 
   React.useEffect(() => {
+    if (isMobile) {
+      return;
+    }
+
     const handleResize = () => {
       if (courseResultsRef && courseResultsRef.current && courseResultsRef.current.firstChild) {
         const width = courseResultsRef.current.clientWidth;
@@ -25,12 +31,12 @@ export default function CourseResults(props) {
 
     return () => window.removeEventListener('resize', handleResize);
  }, [props.results]);
- 
-  return (
+
+ return (
     <div ref={courseResultsRef} className={classes.results} style={{ justifyContent: `${singleRow ? "flex-start" : "space-between"}`, gap: `${gap}px`}}>
       { props.results.map((result) => <CourseResult key={result.courseNumber} result={result} onCourseSelect={props.onCourseSelect}/>) }
-      { props.results.length > 0 && Array(extraChildren).fill(props.results[0]).map((result) =>
-        <CourseResult key={result.courseNumber} result={result} onCourseSelect={props.onCourseSelect} hide={true}/>) }
+      { props.results.length > 0 && Array(extraChildren).fill(props.results[0]).map((result, index) =>
+        <CourseResult key={result.courseNumber + index} result={result} onCourseSelect={props.onCourseSelect} hide={true}/>) }
     </div>
   );
 }
