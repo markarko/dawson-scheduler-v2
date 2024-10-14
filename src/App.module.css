@@ -11,15 +11,16 @@
 @media only screen and (max-width: 768px) {
   .App {
     flex-direction: column;
+    overflow: hidden;
   }
 
   .App > :first-child {
-    flex: 1;
+    /* flex: 1; */
     background-color:var(--mantine-color-blue-filled);
-    max-height: 75px;
+    height: 65px;
   }
 
-  .App > :nth-child(2) {
+  /* .App > :nth-child(2) {
     flex: 5;
-  }
+  } */
 }

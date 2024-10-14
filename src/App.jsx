@@ -33,7 +33,7 @@ const theme = createTheme({
 export default function App() {
   const [activePage, setActivePage] = React.useState(NavbarItem.Search);
   const [savedSchedules, setSavedSchedules] = React.useState([]);
-  const [selectedCourses, setSelectedCourses] = React.useState([]);
+  const [selectedCourses, setSelectedCourses] = React.useState({});
   const [schedules, setSchedules] = React.useState([]);
 
 

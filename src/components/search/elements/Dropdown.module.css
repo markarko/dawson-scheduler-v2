@@ -17,6 +17,12 @@
       /* background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5)); */
     }
 }
+
+@media only screen and (max-width: 768px) {
+  .control {
+    width: 125px;
+  }
+}
   
 .label {
     font-weight: 500;

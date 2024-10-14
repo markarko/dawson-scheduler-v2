@@ -3,17 +3,15 @@ import classes from './SchedulesPage.module.css';
 import Schedules from './schedule/Schedules';
 import React from 'react';
 import Dropdown from "../search/elements/Dropdown";
-import FiltersPanel from "./filters/FiltersPanel";
+import FiltersPanel, { FiltersToggleButton } from "./filters/FiltersPanel";
 import { toast } from "react-toastify";
+import useIsMobile from "../../hooks/UseIsMobile";
+import Filters from "./filters/Filters";
 
-const Zoom = {
+const MobileZoom = {
   Small: {
     label: "Small",
     scale: 1
-  },
-  Medium: {
-    label: "Medium",
-    scale: 1.5
   },
   Large: {
     label: "Large",
@@ -21,8 +19,17 @@ const Zoom = {
   }
 }
 
+const Zoom = {
+  ...MobileZoom,
+  Medium: {
+    label: "Medium",
+    scale: 1.5
+  },
+}
+
 export default function SchedulesPage(props) {
   const [zoom, setZoom] = React.useState(Zoom.Small);
+  const isMobile = useIsMobile();
 
   const onScheduleSave = (schedule) => {
     const scheduleExists = props.savedSchedules.some(savedSchedule => JSON.stringify(savedSchedule) === JSON.stringify(schedule));
@@ -35,20 +42,78 @@ export default function SchedulesPage(props) {
     }
   }
 
-  return (
-    <div className={classes.SchedulesPage}>
-      <div className={classes.Filters}>
-        <div className={classes.SelectedCourses}>
-          <SelectedCourses selectedCourses={props.selectedCourses} setSelectedCourses={props.setSelectedCourses} />
-        </div>
-        <div className={classes.Zoom}>
-          <div>Zoom</div>
-          <Dropdown values={Object.keys(Zoom).map(key => Zoom[key].label)} onSelect={(key) => setZoom(Zoom[key])} />  
-        </div>
+  return <>
+    { isMobile ?
+      <MobileView
+        selectedCourses={props.selectedCourses}
+        setSelectedCourses={props.setSelectedCourses}
+        applyFilters={props.applyFilters}
+        schedules={props.schedules}
+        savedSchedules={props.savedSchedules}
+        onScheduleSave={onScheduleSave}
+        zoom={zoom}
+        setZoom={setZoom}
+        onView={props.onView}
+      /> :
+      <DesktopView
+        selectedCourses={props.selectedCourses}
+        setSelectedCourses={props.setSelectedCourses}
+        schedules={props.schedules}
+        savedSchedules={props.savedSchedules}
+        onView={props.onView}
+        onScheduleSave={onScheduleSave}
+        zoom={zoom}
+        setZoom={setZoom}
+        applyFilters={props.applyFilters}
+      />
+    }
+  </>
+}
+
+function MobileView(props) {
+  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
+  const isMobile = useIsMobile();
+
+  const togglePanel = () => {
+    setIsPanelOpen(!isPanelOpen);
+  };
+
+  return <div className={classes.SchedulesPage}>
+    <div className={classes.MobileActionsContainer}>
+      <div className={classes.Zoom}>
+        <div>Zoom</div>
+        <Dropdown
+          values={Object.keys(isMobile ? MobileZoom : Zoom).map(key => Zoom[key].label)}
+          onSelect={(key) => props.setZoom(Zoom[key])}
+        />  
       </div>
-      <Schedules schedules={props.schedules || []} selectedCourses={props.selectedCourses}
-        zoom={zoom} onScheduleSave={onScheduleSave} savedSchedules={props.savedSchedules} onView={props.onView} />
-      <FiltersPanel selectedCourses={props.selectedCourses} applyFilters={props.applyFilters}/>
+      <FiltersToggleButton isPanelOpen={isPanelOpen} togglePanel={togglePanel}/>
     </div>
-  )
+
+    <div className={`${classes.panelContent} ${isPanelOpen ? classes.open : ''}`}>
+      <Filters selectedCourses={props.selectedCourses} applyFilters={props.applyFilters}/>
+    </div>
+    {/* <div className={classes.SelectedCourses}>
+      <SelectedCourses selectedCourses={props.selectedCourses} setSelectedCourses={props.setSelectedCourses} />
+    </div> */}
+    <Schedules schedules={props.schedules || []} selectedCourses={props.selectedCourses}
+      zoom={props.zoom} onScheduleSave={props.onScheduleSave} savedSchedules={props.savedSchedules} onView={props.onView} />
+  </div>  
+}
+
+function DesktopView(props) {
+  return <div className={classes.SchedulesPage}>
+    <div className={classes.Filters}>
+      <div className={classes.SelectedCourses}>
+        <SelectedCourses selectedCourses={props.selectedCourses} setSelectedCourses={props.setSelectedCourses} />
+      </div>
+      <div className={classes.Zoom}>
+        <div>Zoom</div>
+        <Dropdown values={Object.keys(Zoom).map(key => Zoom[key].label)} onSelect={(key) => props.setZoom(Zoom[key])} />  
+      </div>
+    </div>
+    <Schedules schedules={props.schedules || []} selectedCourses={props.selectedCourses}
+      zoom={props.zoom} onScheduleSave={props.onScheduleSave} savedSchedules={props.savedSchedules} onView={props.onView} />
+    <FiltersPanel selectedCourses={props.selectedCourses} applyFilters={props.pplyFilters}/>
+  </div>
 }
