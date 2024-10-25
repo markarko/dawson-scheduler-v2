@@ -32,7 +32,7 @@ export default function SearchBar(props) {
 }
 
 function fetchResults(setResults, query) {
-  fetch("https://schedurator-a4fzaxeshbe9gxg8.canadacentral-01.azurewebsites.net/scheduler/courses?course-number=" + query)
+  fetch("http://localhost:8000/scheduler/courses?query=" + query)
     .then(response => response.json())
     .then(json => {
         if (json.status === "OK"){

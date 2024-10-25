@@ -1,8 +1,10 @@
 .SchedulesPage {
     flex: 6;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 30px 30px 30px;
+    padding: 15px;
+    gap: 15px;
 }
 
 .Filters {
