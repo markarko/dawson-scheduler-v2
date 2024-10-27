@@ -72,7 +72,6 @@ export default function SchedulesPage(props) {
 
 function MobileView(props) {
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
-  const isMobile = useIsMobile();
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -83,7 +82,7 @@ function MobileView(props) {
       <div className={classes.Zoom}>
         <div>Zoom</div>
         <Dropdown
-          values={Object.keys(isMobile ? MobileZoom : Zoom).map(key => Zoom[key].label)}
+          values={Object.keys(MobileZoom).map(key => Zoom[key].label)}
           onSelect={(key) => props.setZoom(Zoom[key])}
         />  
       </div>
@@ -102,18 +101,29 @@ function MobileView(props) {
 }
 
 function DesktopView(props) {
+  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
+
+  const togglePanel = () => {
+    setIsPanelOpen(!isPanelOpen);
+  };
+
   return <div className={classes.SchedulesPage}>
     <div className={classes.Filters}>
-      <div className={classes.SelectedCourses}>
+      <div className={classes.SelectedCoursesWrapper}>
         <SelectedCourses selectedCourses={props.selectedCourses} setSelectedCourses={props.setSelectedCourses} />
       </div>
-      <div className={classes.Zoom}>
-        <div>Zoom</div>
-        <Dropdown values={Object.keys(Zoom).map(key => Zoom[key].label)} onSelect={(key) => props.setZoom(Zoom[key])} />  
+      <div className={classes.RightFilters}>
+        <div className={classes.Zoom}>
+          <div>Zoom</div>
+          <Dropdown values={Object.keys(Zoom).map(key => Zoom[key].label)} onSelect={(key) => props.setZoom(Zoom[key])} />  
+        </div>
+        <FiltersToggleButton isPanelOpen={isPanelOpen} togglePanel={togglePanel}/>
       </div>
+    </div>
+    <div className={`${classes.panelContent} ${isPanelOpen ? classes.open : ''}`}>
+      <Filters selectedCourses={props.selectedCourses} applyFilters={props.applyFilters}/>
     </div>
     <Schedules schedules={props.schedules || []} selectedCourses={props.selectedCourses}
       zoom={props.zoom} onScheduleSave={props.onScheduleSave} savedSchedules={props.savedSchedules} onView={props.onView} />
-    <FiltersPanel selectedCourses={props.selectedCourses} applyFilters={props.pplyFilters}/>
   </div>
 }

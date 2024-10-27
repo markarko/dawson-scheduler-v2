@@ -49,8 +49,8 @@ export default function SavedSchedule(props) {
           Object.keys(props.savedSchedule).map((courseId, courseIndex) => props.savedSchedule[courseId].schedules.map(schedule => {
             return (
               <div key={JSON.stringify(schedule)} style={{
-                gridColumn: schedule.dayOfWeek - 1,
-                gridRow: `${(schedule.startTime - (60 * 7)) / 15 + 1} / ${(schedule.endTime - (60 * 7)) / 15 + 1}`,
+                gridColumn: schedule.dayOfWeek - (isMobile ? 1 : 0),
+                gridRow: `${(schedule.startTime - (isMobile ? 60 * 7 : 0)) / 15 + 1} / ${(schedule.endTime - (isMobile ? 60 * 7 : 0)) / 15 + 1}`,
                 backgroundColor: colors[courseIndex % colors.length],
                 color: "white",
                 borderRadius: "10px",

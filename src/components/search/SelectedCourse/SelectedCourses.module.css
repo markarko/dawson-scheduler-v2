@@ -7,14 +7,16 @@
     width: 100%;
     display: flex;
     gap: 1rem;
-    justify-content: center;
     position: sticky;
     top: 42px;
     background-color: white;
     z-index: 1;
     padding-bottom: 2rem;
-    min-height: 50px;
-    max-height: 50px;
+    min-height: 65px;
+    max-height: 65px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 @media only screen and (max-width: 768px) {
