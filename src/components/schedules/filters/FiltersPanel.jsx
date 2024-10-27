@@ -27,12 +27,12 @@ export function FiltersToggleButton(props) {
   const theme = useMantineTheme();
   const isMobile = useIsMobile();
 
-  return <ActionIcon className={`${classes.toggleButton}`} size={isMobile ? 48 : 64} radius="xl" color={theme.primaryColor} variant="filled" onClick={props.togglePanel}>
+  return <ActionIcon className={`${classes.toggleButton}`} size={48} radius="xl" color={theme.primaryColor} variant="filled" onClick={props.togglePanel}>
     { props.isPanelOpen && 
-      <IconArrowRight style={{ width: rem(64), height: rem(64) }} stroke={2} />
+      <IconArrowRight style={{ width: rem(isMobile ? 64 : 32), height: rem(isMobile ? 64 : 32) }} stroke={2} />
     }
     { !props.isPanelOpen &&
-      <IconFilter style={{ width: rem(64), height: rem(64) }} stroke={2} />
+      <IconFilter style={{ width: rem(isMobile ? 64 : 32), height: rem(isMobile ? 64 : 32) }} stroke={2} />
     }
   </ActionIcon>
 }

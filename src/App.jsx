@@ -90,7 +90,7 @@ export default function App() {
 }
 
 function fetchSchedules(setSchedules, body, ) {
-  fetch("https://schedurator-a4fzaxeshbe9gxg8.canadacentral-01.azurewebsites.net/scheduler/schedules", {
+  fetch("http://localhost:8000/scheduler/schedules", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"

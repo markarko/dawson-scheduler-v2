@@ -9,6 +9,7 @@ import {
 import classes from './Navbar.module.css';
 import React from 'react';
 import useIsMobile from '../../hooks/UseIsMobile';
+import { toast } from 'react-toastify';
 
 export const NavbarItem = {
   Search: 'Search',
@@ -21,14 +22,14 @@ export const NavbarItem = {
 };
 
 const data = [
-  { link: '', label: NavbarItem.Search, icon: IconSearch, disabled: false },
-  { link: '', label: NavbarItem.Schedules, icon: IconCalendarMonth, disabled: false },
-  { link: '', label: NavbarItem.Saved, icon: IconBookmark, disabled: false },
+  { label: NavbarItem.Search, icon: IconSearch, disabled: false },
+  { label: NavbarItem.Schedules, icon: IconCalendarMonth, disabled: false },
+  { label: NavbarItem.Saved, icon: IconBookmark, disabled: false },
 ];
 
 const mobileData = [
-  { link: '', label: NavbarItem.Login, icon: IconLogin, disabled: true },
-  { link: '', label: NavbarItem.Register, icon: IconRegistered, disabled: true }
+  { label: NavbarItem.Login, icon: IconLogin, disabled: true },
+  { label: NavbarItem.Register, icon: IconRegistered, disabled: true }
 ];
 
 export function Navbar(props) {
@@ -42,7 +43,13 @@ export function Navbar(props) {
       data-active={item.label === props.activePage || undefined}
       key={item.label}
       onClick={(event) => {
-        event.preventDefault(); 
+        event.preventDefault();
+        if (item.disabled) {
+          toast.error("This feature is currently disabled", {
+            autoClose: 1500
+          });
+          return;
+        }
         props.setActivePage(item.label);
         if (isMobile) setIsMobileNavOpen(false);
       }}
@@ -68,12 +75,22 @@ export function Navbar(props) {
             {links}
           </div>
           <div className={classes.footer}>
-            <a href="/" className={classes.link} onClick={(event) => event.preventDefault()}>
+            <a href="/" className={classes.link} onClick={(event) => {
+              event.preventDefault();
+              toast.error("This feature is currently disabled", {
+                autoClose: 2000
+              })
+            }}>
               <IconRegistered className={classes.linkIcon} stroke={1.5} />
               <span>Register</span>
             </a>
 
-            <a href="/" className={classes.link} onClick={(event) => event.preventDefault()}>
+            <a href="/" className={classes.link} onClick={(event) => {
+              event.preventDefault();
+              toast.error("This feature is currently disabled", {
+                autoClose: 2000
+              });
+              }}>
               <IconLogin className={classes.linkIcon} stroke={1.5} />
               <span>Login</span>
             </a>
