@@ -36,7 +36,6 @@ export default function App() {
   const [selectedCourses, setSelectedCourses] = React.useState({});
   const [schedules, setSchedules] = React.useState([]);
 
-
   React.useEffect(() => {
     const body = {};
     body.selectedCourses = {};
